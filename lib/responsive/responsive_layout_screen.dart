@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/utils/dimensions.dart';
 
-class ResponsiveLayout extends StatelessWidget {
+class ReponsiveLayout extends StatelessWidget {
   final Widget webScreenLayout;
   final Widget mobileScreenLayout;
-  const ResponsiveLayout({
+  const ReponsiveLayout({
     Key? key, 
     required this.webScreenLayout, 
     required this.mobileScreenLayout,
