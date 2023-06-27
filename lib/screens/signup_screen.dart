@@ -40,6 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       _isLoading = true;
     });
+    
     String res = await AuthMethods().signUpUser(
       email: _emailController.text,
       password: _passwordController.text,
@@ -111,9 +112,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         )
                       : const CircleAvatar(
                           radius: 64,
-                          backgroundImage: NetworkImage(
-                            'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
-                          )),
+                          backgroundImage: NetworkImage('https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1-744x744.jpg'),
+                          ),
                   Positioned(
                     bottom: -10,
                     left: 80,

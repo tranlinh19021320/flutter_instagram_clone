@@ -55,7 +55,9 @@ class MyApp extends StatelessWidget {
                   mobileScreenLayout: MobileScreenLayout(),
                 );
               } else if (snapshot.hasError) {
-                return Center(child: Text('{$snapshot.error}'),);
+                return Center(
+                  child: Text('{$snapshot.error}'),
+                );
               }
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -65,7 +67,7 @@ class MyApp extends StatelessWidget {
                 ),
               );
             }
-    
+
             return const LoginScreen();
           },
         ),
