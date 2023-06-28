@@ -127,7 +127,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
       appBar: AppBar(
         backgroundColor: black0Color,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_sharp),
           onPressed: clearImage,
         ),
         title: const Text('Post To'),
