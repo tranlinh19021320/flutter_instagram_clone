@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_instagram_clone/resources/auth_methods.dart';
 import 'package:flutter_instagram_clone/responsive/responsive_layout_screen.dart';
 import 'package:flutter_instagram_clone/screens/login_screen.dart';
@@ -40,7 +41,6 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       _isLoading = true;
     });
-    
     String res = await AuthMethods().signUpUser(
       email: _emailController.text,
       password: _passwordController.text,
@@ -62,6 +62,13 @@ class _SignupScreenState extends State<SignupScreen> {
                 mobileScreenLayout: MobileScreenLayout(),
               )));
     }
+  }
+
+  signUpUserwithDefaultImage() async {
+    ByteData bytes = await rootBundle.load('assets/default-profile.jpg');
+    _image = bytes.buffer.asUint8List();
+    signUpUser();
+
   }
 
   void selectImage() async {
@@ -112,7 +119,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         )
                       : const CircleAvatar(
                           radius: 64,
-                          backgroundImage: NetworkImage('https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1-744x744.jpg'),
+                          backgroundImage: AssetImage('assets/default-profile.jpg'),
                           ),
                   Positioned(
                     bottom: -10,
@@ -169,7 +176,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               //Button LOGIN
               InkWell(
-                onTap: signUpUser,
+                onTap: (_image != null) ? signUpUser : signUpUserwithDefaultImage,
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,

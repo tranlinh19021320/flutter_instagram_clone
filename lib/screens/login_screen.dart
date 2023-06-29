@@ -3,6 +3,7 @@ import 'package:flutter_instagram_clone/resources/auth_methods.dart';
 import 'package:flutter_instagram_clone/screens/home_screen.dart';
 import 'package:flutter_instagram_clone/screens/signup_screen.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
+import 'package:flutter_instagram_clone/utils/global_variables.dart';
 import 'package:flutter_instagram_clone/utils/utils.dart';
 import 'package:flutter_instagram_clone/widgets/text_field_input.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,8 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
           builder: (context) => const ReponsiveLayout(
                 webScreenLayout: WebScreenLayout(),
                 mobileScreenLayout: MobileScreenLayout(),
-              )
-          ));
+              )));
     } else {
       // ignore: use_build_context_synchronously
       showSnackBar(res, context);
@@ -67,7 +67,10 @@ class _LoginScreenState extends State<LoginScreen> {
       //body: Text('Login Screen'),
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: MediaQuery.of(context).size.width > webScreenSize
+              ? EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 3)
+              : const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
