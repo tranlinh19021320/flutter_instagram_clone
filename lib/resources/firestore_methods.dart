@@ -1,9 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/resources/storage_methods.dart';
+import 'package:flutter_instagram_clone/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
+import '../models/notification.dart';
 import '../models/post.dart';
 
 class FirestoreMethods {
@@ -81,6 +85,8 @@ class FirestoreMethods {
           'commentId': commentId,
           'datePublished': DateTime.now(),
         });
+
+        postNotification(uid, postId, commentId);
       } else {
         print('Text is empty');
       }
@@ -94,6 +100,7 @@ class FirestoreMethods {
   Future<void> deletePost(String postId) async {
     try {
       await _firestore.collection('posts').doc(postId).delete();
+
     } catch (e) {
       print(e.toString());
     }
@@ -120,6 +127,54 @@ class FirestoreMethods {
           'following': FieldValue.arrayUnion([followId]),
         });
       }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  // notifications
+  Future<void> postNotification(
+      String uid, String postId, String commentId) async {
+    String res = "Some error occurred";
+    try {
+      DocumentSnapshot snapshotPost =
+            await _firestore.collection('posts').doc(postId).get();
+
+      String postUserId = snapshotPost['uid'];
+
+      if (uid != postUserId) {
+        List likes = (snapshotPost.data()! as dynamic)['likes'];
+
+        String notificationId = const Uuid().v1();
+        print(likes.toString());
+        NotificationUser notification = NotificationUser(
+          notificationId: notificationId,
+          uid: postUserId,
+          postId: postId,
+          commentId: commentId,
+          datePublished: DateTime.now(),
+          isLike: likes.contains(uid),
+        );
+
+        _firestore
+            .collection('notifications')
+            .doc(notificationId)
+            .set(notification.toJson());
+        res = 'success';
+      } else {
+        print('is my post');
+      }
+    } catch (e) {
+      res = e.toString();
+    }
+
+    print(res + uid);
+  }
+
+  //delete notification
+  Future<void> deleteNotification(String notificationId) async {
+    try {
+      await _firestore.collection('notifications').doc(notificationId).delete();
     } catch (e) {
       print(e.toString());
     }

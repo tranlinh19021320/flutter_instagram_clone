@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_instagram_clone/providers/user_provider.dart';
 import 'package:flutter_instagram_clone/resources/storage_methods.dart';
 import 'package:flutter_instagram_clone/models/user.dart' as model;
 class AuthMethods {
@@ -101,7 +102,10 @@ class AuthMethods {
 
   }
 
-  Future<void> logOut() async{
+  Future<void> signOut() async{
     await _auth.signOut();
+    UserProvider user = UserProvider();
+    user.refreshUser();
+    
   }
 }

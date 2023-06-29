@@ -88,7 +88,9 @@ class _CommentScreenState extends State<CommentScreen> {
                       _commentController.text,
                       user.uid,
                       user.username,
-                      user.photoURL);
+                      user.photoURL
+                      );
+                  
                   
                   setState(() {
                     _commentController.text = "";
