@@ -26,8 +26,7 @@ Then run your app:
   flutter pub get
 ```
 **Android** :
-Connect Android device/simulator
-migrate to ```main.dart``` and press ```F5``` or ```Ctrl + F5``` to run
+Connect Android device/simulator and migrate to ```main.dart``` and press ```F5``` or ```Ctrl + F5``` to run
 
 **Web** :
 migrate to ```main.dart``` and open Terminal then command:
