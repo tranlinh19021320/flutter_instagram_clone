@@ -25,12 +25,11 @@ Then run your app:
 ```bash
   flutter pub get
 ```
-**Android**
-Connect Android device/simulator
-migrate to ```main.dart``` and press ```F5``` or ```Ctrl + F5``` to run
+**Android** :
+Connect Android device/simulator and migrate to ```main.dart``` and press ```F5``` or ```Ctrl + F5``` to run
 
-**Web** 
-migrate to ```main.dart``` and open Terminal them command:
+**Web** :
+migrate to ```main.dart``` and open Terminal then command:
 ```bash
   flutter run -d chrome --web-renderer html
 ```
