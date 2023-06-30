@@ -86,7 +86,7 @@ class FirestoreMethods {
           'datePublished': DateTime.now(),
         });
 
-        postNotification(uid, postId, commentId);
+        postNotification(uid, postId, commentId, profilePic, name);
       } else {
         print('Text is empty');
       }
@@ -134,7 +134,7 @@ class FirestoreMethods {
 
   // notifications
   Future<void> postNotification(
-      String uid, String postId, String commentId) async {
+      String uid, String postId, String commentId, String photoURL, String name) async {
     String res = "Some error occurred";
     try {
       DocumentSnapshot snapshotPost =
@@ -149,7 +149,9 @@ class FirestoreMethods {
         print(likes.toString());
         NotificationUser notification = NotificationUser(
           notificationId: notificationId,
+          name: name,
           uid: postUserId,
+          photoURL: photoURL,
           postId: postId,
           commentId: commentId,
           datePublished: DateTime.now(),

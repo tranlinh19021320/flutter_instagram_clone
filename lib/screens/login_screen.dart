@@ -7,7 +7,9 @@ import 'package:flutter_instagram_clone/utils/global_variables.dart';
 import 'package:flutter_instagram_clone/utils/utils.dart';
 import 'package:flutter_instagram_clone/widgets/text_field_input.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/user_provider.dart';
 import '../responsive/mobile_screen_layout.dart';
 import '../responsive/responsive_layout_screen.dart';
 import '../responsive/web_screen_layout.dart';
@@ -41,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     if (res == 'success') {
+  
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const ReponsiveLayout(
                 webScreenLayout: WebScreenLayout(),

@@ -1,10 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_instagram_clone/utils/global_variables.dart';
+import 'package:flutter_instagram_clone/utils/colors.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
-import '../utils/colors.dart';
+import '../models/user.dart';
+import '../providers/user_provider.dart';
+import '../screens/add_post_screen.dart';
+import '../screens/feed_screen.dart';
+import '../screens/notification_sceen.dart';
+import '../screens/profile_screen.dart';
+import '../screens/search_screen.dart';
 
 class WebScreenLayout extends StatefulWidget {
   const WebScreenLayout({super.key});
@@ -38,6 +43,9 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
+    
+        final User user = Provider.of<UserProvider>(context).getUser;
+
     return  Scaffold(
       appBar: AppBar(
          backgroundColor: black18Color,
@@ -90,9 +98,17 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
         ],
       ),
       body: PageView(
-        children: homeScreenItems,
         controller: pageController,
         onPageChanged: onPageChanged,
+        children:  [
+          const FeedScreen(),
+          const SearchScreen(),
+          const AddPostScreen(),
+          const NotificationScreen(),
+          ProfileScreen(
+            uid: user.uid,
+          ),
+        ],
       )
     );
   }

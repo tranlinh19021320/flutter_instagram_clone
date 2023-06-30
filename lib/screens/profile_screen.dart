@@ -7,7 +7,6 @@ import 'package:flutter_instagram_clone/screens/login_screen.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
 import 'package:flutter_instagram_clone/utils/utils.dart';
 import 'package:flutter_instagram_clone/widgets/follow_button.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -29,7 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .where('uid', isEqualTo: widget.uid)
           .get();
       postLen = postSnap.docs.length;
-
 
       setState(() {});
     } catch (e) {
@@ -82,11 +80,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         IconButton(
                           onPressed: () async {
                             await AuthMethods().signOut();
-                    
-                            Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ));
+
+                            if (context.mounted) {
+                            
+                              Navigator.of(context)
+                                  .pushReplacement(MaterialPageRoute(
+                                builder: (context) => const LoginScreen(),
+                              ));
+                            }
+                            ;
                           },
                           icon: const Icon(
                             Icons.logout,

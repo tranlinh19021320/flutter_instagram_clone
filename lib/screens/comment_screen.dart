@@ -78,6 +78,20 @@ class _CommentScreenState extends State<CommentScreen> {
                       hintText: "Comment as ${user.username}",
                       border: InputBorder.none,
                     ),
+                    onSubmitted: (String _) async {
+                      await FirestoreMethods().postComment(
+                      widget.snap['postId'],
+                      _commentController.text,
+                      user.uid,
+                      user.username,
+                      user.photoURL
+                      );
+                  
+                  
+                  setState(() {
+                    _commentController.text = "";
+                  });
+                    },
                   ),
                 ),
               ),

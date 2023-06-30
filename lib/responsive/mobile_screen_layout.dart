@@ -1,7 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
-import 'package:flutter_instagram_clone/utils/global_variables.dart';
+import 'package:provider/provider.dart';
+
+import '../models/user.dart';
+import '../providers/user_provider.dart';
+import '../screens/add_post_screen.dart';
+import '../screens/feed_screen.dart';
+import '../screens/notification_sceen.dart';
+import '../screens/profile_screen.dart';
+import '../screens/search_screen.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({super.key});
@@ -21,11 +29,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   }
 
   void navigationTapped(int page) {
-    
     pageController.jumpToPage(page);
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   void onPageChanged(int page) {
@@ -36,11 +41,20 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final User user = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: homeScreenItems,
+        children: [
+          const FeedScreen(),
+          const SearchScreen(),
+          const AddPostScreen(),
+          const NotificationScreen(),
+          ProfileScreen(
+            uid: user.uid,
+          ),
+        ],
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: black0Color,

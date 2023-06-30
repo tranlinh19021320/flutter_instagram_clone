@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class NotificationUser {
   final String notificationId;
   final String uid;
+  final String name;
+  final String photoURL;
   final String postId;
   final datePublished;
   final String commentId;
@@ -10,6 +12,8 @@ class NotificationUser {
 
   NotificationUser({
     required this.notificationId,
+    required this.name,
+    required this.photoURL,
     required this.uid,
     required this.postId,
     required this.commentId,
@@ -19,6 +23,8 @@ class NotificationUser {
 
   Map<String, dynamic> toJson() => {
     "notificationId" : notificationId,
+    "name" : name,
+    "photoURL" : photoURL,
     "uid" : uid,
     "postId" : postId,
     "datePublished" : datePublished,
@@ -32,6 +38,8 @@ class NotificationUser {
 
     return NotificationUser(
       notificationId: snapshot['notificationId'],
+      name: snapshot['name'],
+      photoURL: snapshot['photoURL'],
       uid: snapshot['uid'],
       postId : snapshot['postId'],
       datePublished : snapshot['datePublished'],

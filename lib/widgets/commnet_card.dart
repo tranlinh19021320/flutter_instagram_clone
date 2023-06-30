@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram_clone/utils/colors.dart';
 import 'package:intl/intl.dart';
 
 class CommentCard extends StatefulWidget {
@@ -41,10 +42,16 @@ class _CommentCardState extends State<CommentCard> {
                           text: widget.snap['name'],
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
+                            color: whiteColor,
+                            fontSize: 16,
                           ),
                         ),
                         TextSpan(
                           text: '  ${widget.snap['text']}',
+                          style: const TextStyle(
+                            color: whiteColor,
+                            fontSize: 14,
+                          )
                           
                         ),
                       ],
