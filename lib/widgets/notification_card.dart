@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram_clone/resources/firestore_methods.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
 import 'package:intl/intl.dart';
 
@@ -19,13 +20,15 @@ class _NotificationCardState extends State<NotificationCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).push(
+      onTap: () { Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => CommentScreen(
                       snap: widget.snap,
                     ),
                   ),
-                ),
+                );
+                FirestoreMethods().deleteNotification(widget.snap['notificationId']);
+      },
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: black38Color)

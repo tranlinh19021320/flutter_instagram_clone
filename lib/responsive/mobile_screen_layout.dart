@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/utils/colors.dart';
@@ -10,6 +11,7 @@ import '../screens/feed_screen.dart';
 import '../screens/notification_sceen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/search_screen.dart';
+import '../utils/utils.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({super.key});
@@ -21,6 +23,7 @@ class MobileScreenLayout extends StatefulWidget {
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   int _page = 0;
   late PageController pageController = PageController();
+  int _notif = 0;
 
   @override
   void dispose() {
@@ -39,9 +42,25 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     });
   }
 
+ void getNotif(String uid) async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('notifications')
+          .where('uid', isEqualTo: uid)
+          .get();
+      print(snapshot.docs.length);
+      _notif = snapshot.docs.length;
+      
+    } catch (e) {
+      showSnackBar(e.toString(), context);
+    }
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
+
     return Scaffold(
       body: PageView(
         controller: pageController,
@@ -83,11 +102,14 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             backgroundColor: whiteColor,
           ),
           BottomNavigationBarItem(
+            label: '',
             icon: Icon(
-              Icons.favorite,
+              Icons.notification_add,
               color: _page == 3 ? whiteColor : greyColor,
             ),
-            label: '',
+
+            
+            
             backgroundColor: whiteColor,
           ),
           BottomNavigationBarItem(
