@@ -1,16 +1,42 @@
-# flutter_instagram_clone
+# Instagram Clone
+Work on Android & Web
+learning project instagram of [Rivaan Ranawat](https://github.com/RivaanRanawat?tab=repositories) 
 
-A new Flutter project.
+## Feature
+- Responsive Instagram UI
+- Email & Password Authentication
+- Share Posts with Caption
+- Display Posts with Caption
+- Like & Comment on Posts
+- Notifications
+- Search Users
+- Follow Users
+- Display User Posts, Followers & Following
+- EVERYTHING REAL TIME
+- Sign Out
+## To start
+- clone this repository:
+``` sh
+git clone https://github.com/tranlinh19021320/flutter_instagram_clone.git
+```
 
-## Getting Started
+- migrate to ```instagram-flutter-clone``` folder.
+Then run your app:
+```bash
+  flutter pub get
+```
+**Android**
+Connect Android device/simulator
+migrate to ```main.dart``` and press ```F5``` or ```Ctrl + F5``` to run
 
-This project is a starting point for a Flutter application.
+**Web** 
+migrate to ```main.dart``` and open Terminal them command:
+```bash
+  flutter run -d chrome --web-renderer html
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Used
+**Server**: Firebase Auth, Firebase Storage, Firebase Firestore
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Client**: Flutter, Provider
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
