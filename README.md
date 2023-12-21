@@ -35,7 +35,7 @@ migrate to ```main.dart``` and open Terminal then command:
 ```
 
 ## Tech Used
-**Server**: Firebase Auth, Firebase Storage, Firebase Firestore
+**Server**: Firebase Auth, Firebase Storage, Cloud Firebase
 
 **Client**: Flutter, Provider
 
